@@ -3,13 +3,13 @@ import './MyNavbar.css';
 
 const MyNavbar = () => {
   return (
-    <Navbar expand="lg" data-bs-theme="dark" className="navbarblue">
+    <Navbar expand="lg" data-bs-theme="dark" className="navbar-elegante">
       <Container>
         {/* Imagen de la izquierda solo en pantallas grandes */}
         <Navbar.Brand href="#home" className="d-none d-lg-block">
           <Image
-            src="https://i.kinja-img.com/image/upload/c_fit,q_60,w_1315/d8f801cb2899b73ac4e8787110e85381.jpg"
-            className="rounded-image nav-icon"
+            src="https://m.media-amazon.com/images/I/71-bZWL-+mL._AC_SX679_.jpg" // Imagen de Mario Kart
+            className="navbar-image"
             width={50}
             height={50}
           />
@@ -18,21 +18,21 @@ const MyNavbar = () => {
         {/* Toggle (hamburguesa) solo en pantallas pequeñas */}
         <Navbar.Toggle aria-controls="basic-navbar-nav" className="d-lg-none">
           <Image
-            src="https://i.kinja-img.com/image/upload/c_fit,q_60,w_1315/d8f801cb2899b73ac4e8787110e85381.jpg"
-            className="rounded-image nav-icon"
+            src="https://m.media-amazon.com/images/I/71-bZWL-+mL._AC_SX679_.jpg" // Imagen de Mario Kart
+            className="navbar-image"
             width={50}
             height={50}
           />
         </Navbar.Toggle>
 
         <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="me-auto">
-            <Nav.Link href="/">Inicio</Nav.Link>
-            <Nav.Link href="/registrate">Registrate</Nav.Link>
-            <Nav.Link href="/registro">Reservar</Nav.Link>
-            <Nav.Link href="/quienessomos">Quienes somos</Nav.Link>
-            <Nav.Link href="/Servicios">Servicios</Nav.Link>
-            <Nav.Link href="/Contáctenos">Contáctenos</Nav.Link>
+          <Nav className="ms-auto">
+            <Nav.Link href="/" className="navbar-link">Inicio</Nav.Link>
+            <Nav.Link href="/registrate" className="navbar-link">Registrate</Nav.Link>
+            <Nav.Link href="/registro" className="navbar-link">Reservar</Nav.Link>
+            <Nav.Link href="/quienessomos" className="navbar-link">Quienes somos</Nav.Link>
+            <Nav.Link href="/Servicios" className="navbar-link">Servicios</Nav.Link>
+            <Nav.Link href="/Contáctenos" className="navbar-link">Contáctenos</Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>

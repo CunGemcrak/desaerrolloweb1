@@ -51,7 +51,7 @@ const Recuperarkey = () => {
         {/* Columna derecha: Imagen y texto de bienvenida (solo visible en pantallas medianas y grandes) */}
         <MDBCol lg="6" md="12" className="text-center d-none d-md-block">
           <img
-            src="https://static.wikia.nocookie.net/mario/images/b/be/Champi%C3%B1%C3%B3n_Gigante.jpg/revision/latest?cb=20100910210855&path-prefix=es"
+            src="https://raw.githubusercontent.com/CunGemcrak/PI-Videogames-main/main/videogame.png"
             style={{ width: '300px', borderRadius: '10%' }}
             alt="Mario Kart Logo"
           />
