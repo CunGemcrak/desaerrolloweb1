@@ -1,0 +1,27 @@
+.card-style {
+    background-color: #fff7e6; /* Fondo suave para el formulario */
+    border-radius: 10px;
+   
+  }
+  
+  .form-control-mario {
+    border-radius: 10px;
+    border: 2px solid #000000; /* Color Mario Kart */
+    background-color: #ffdf73; /* Fondo amarillo, en sintonía con Mario Kart */
+     color: black;
+  }
+  
+  button {
+    background-color: #f7a500; /* Color de Mario Kart */
+    border: none;
+    color: black;
+  }
+  
+  button:hover {
+    background-color: #ff9000;
+  }
+  .textocolor{
+    color: white;
+    font-weight: bold;
+  
+  }

@@ -1,0 +1,42 @@
+.custom-card {
+    width: 80%; /* Ancho relativo para ser responsivo */
+    margin: 20px auto; /* Centra horizontalmente y separa del Navbar */
+    background-color: white; /* Fondo blanco */
+    border: 2px solid #007bff; /* Borde azul */
+    border-radius: 10px; /* Bordes redondeados */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra para darle profundidad */
+    padding: 20px; /* Espaciado interno */
+}
+.custom-card  .card-Body{
+    display: flex;
+    
+}
+.custom-card .card-title .card-text{
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #007bff; /* Color del título */
+    text-align: center; /* Centrar el título */
+}
+
+.custom-card p {
+    text-align: justify; /* Texto justificado */
+}
+
+.custom-card .card-text {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    color: #333; /* Color de texto oscuro */
+}
+.textoName{
+ color: blue;
+ font-weight: bold;
+ margin-top: -20px;
+}
+
+/* Media Queries */
+@media (max-width: 992px) {
+    .custom-card {
+        width: 90%; /* Reduce el ancho en pantallas medianas */
+    }
+}

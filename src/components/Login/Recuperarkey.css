@@ -1,0 +1,34 @@
+/* Estilo para las etiquetas */
+.form-label {
+    font-weight: bold;
+    font-size: 1rem;
+    color: #333;
+  }
+  
+  /* Estilo de los inputs */
+  .form-control-mario {
+    border-radius: 10px;
+    background-color: #fff0b3;
+    border: 2px solid #ffcc00;
+  }
+  
+  /* Estilo para los textos */
+  .texto-mario {
+    
+    font-size: 1rem;
+    color: #ff0000;
+  }
+  
+  /* Estilo de los botones */
+  .btn-mario {
+    background-color: #ff0000;
+    color: white;
+    font-weight: bold;
+    border-radius: 25px;
+    transition: background-color 0.3s;
+  }
+  
+  .btn-mario:hover {
+    background-color: #ff6600;
+  }
+  

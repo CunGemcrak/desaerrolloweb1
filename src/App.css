@@ -1,0 +1,25 @@
+.App {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Asegura que ocupe toda la pantalla */
+  background-color: white;
+  color: black;
+  text-align: center;
+}
+
+header {
+  width: 100%; /* Asegura que el header ocupe todo el ancho */
+}
+
+main {
+  flex: 1; /* Hace que el contenido principal ocupe todo el espacio disponible */
+}
+
+footer {
+  background-color: #007bff;
+  color: white;
+  text-align: center;
+  padding: 10px 0; /* Añade algo de espacio dentro del footer */
+}

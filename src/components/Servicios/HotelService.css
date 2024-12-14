@@ -1,0 +1,42 @@
+.hotel-container {
+    background: rgba(255, 255, 255, 0.8);
+    padding: 30px;
+    border-radius: 10px;
+  }
+  
+  h2 {
+    font-family: 'Super Mario', sans-serif;
+    color: #f5a623;
+  }
+  
+  .btn-mario {
+    background: linear-gradient(90deg, #f5a623, #f04d24);
+    color: white;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+  }
+  
+  .btn-mario:hover {
+    background: linear-gradient(90deg, #f04d24, #f5a623);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.3);
+  }
+  
+  h4 {
+    font-family: 'Super Mario', sans-serif;
+    font-size: 2rem;
+    color: #f5a623;
+  }
+  
+  .mdb-card-body {
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .mdb-card-text {
+    color: #555;
+  }
+  
