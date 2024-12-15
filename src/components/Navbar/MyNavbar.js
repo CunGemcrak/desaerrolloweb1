@@ -28,7 +28,7 @@ const MyNavbar = () => {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto">
             <Nav.Link href="/" className="navbar-link">Inicio</Nav.Link>
-            <Nav.Link href="/registrate" className="navbar-link">Registrate</Nav.Link>
+            <Nav.Link href="/registrate" className="navbar-link">Login</Nav.Link>
             <Nav.Link href="/registro" className="navbar-link">Reservar</Nav.Link>
             <Nav.Link href="/quienessomos" className="navbar-link">Quienes somos</Nav.Link>
             <Nav.Link href="/Servicios" className="navbar-link">Servicios</Nav.Link>
