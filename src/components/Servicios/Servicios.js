@@ -86,7 +86,7 @@ const HotelService = () => {
                 <MDBCardTitle>{paquete.nombre}</MDBCardTitle>
                 <MDBCardText>{paquete.descripcion}</MDBCardText>
                 <MDBCardText className="text-primary">{paquete.precio}</MDBCardText>
-                <MDBBtn className="btn-mario w-100">Reservar Paquete</MDBBtn>
+                <MDBBtn className="btn-mario w-100">Ver</MDBBtn>
               </MDBCardBody>
             </MDBCard>
           </MDBCol>

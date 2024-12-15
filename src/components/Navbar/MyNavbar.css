@@ -36,3 +36,7 @@
     height: 40px;
   }
 }
+
+.bordesimg{
+  border-radius: 100%;
+}

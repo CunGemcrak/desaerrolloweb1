@@ -9,7 +9,7 @@ const MyNavbar = () => {
         <Navbar.Brand href="#home" className="d-none d-lg-block">
           <Image
             src="https://m.media-amazon.com/images/I/71-bZWL-+mL._AC_SX679_.jpg" // Imagen de Mario Kart
-            className="navbar-image"
+            className="navbar-image bordesimg"
             width={50}
             height={50}
           />
@@ -19,7 +19,7 @@ const MyNavbar = () => {
         <Navbar.Toggle aria-controls="basic-navbar-nav" className="d-lg-none">
           <Image
             src="https://m.media-amazon.com/images/I/71-bZWL-+mL._AC_SX679_.jpg" // Imagen de Mario Kart
-            className="navbar-image"
+            className="navbar-image bordesimg"
             width={50}
             height={50}
           />
