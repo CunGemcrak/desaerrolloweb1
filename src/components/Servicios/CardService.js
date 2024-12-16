@@ -54,10 +54,10 @@ const handleNavegation = (dato)=>{
             </div>
           </div>
           <div className="cajadebotones">
-          <Button className="boton-rojo" onClick={() => handleNavegation('/Servicios')}>
+          <Button className="boton-rojo" variant="warning" onClick={() => handleNavegation('/Servicios')}>
         <i className="fa-solid fa-mushroom"></i> Volver
       </Button>
-      <Button className="boton-amarillo" onClick={() => handleNavegation('/registro')} >
+      <Button className="boton-amarillo" variant="success" onClick={() => handleNavegation('/registro')} >
         <i className="fa-solid fa-star"></i> Reservar
       </Button>
       

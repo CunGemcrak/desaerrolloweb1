@@ -104,7 +104,7 @@ const RegistrarHotelForm = () => {
         });
       }
     }
-  }, [formData.numPersonas, formData.paquete]); // Aseguramos que se actualice cuando el paquete o número de personas cambien
+  }, [formData.numPersonas, formData.paquete, formData, paquetes]); // Aseguramos que se actualice cuando el paquete o número de personas cambien
 
   const handleChange = (e) => {
     setFormData({

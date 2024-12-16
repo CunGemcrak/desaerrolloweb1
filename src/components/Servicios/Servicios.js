@@ -1,4 +1,5 @@
 import React from 'react';
+import {Button } from 'react-bootstrap/'
 import {
   MDBContainer,
   MDBRow,
@@ -7,7 +8,6 @@ import {
   MDBCardBody,
   MDBCardTitle,
   MDBCardText,
-  MDBBtn
 } from 'mdb-react-ui-kit';
 import './HotelService.css';
 
@@ -171,9 +171,9 @@ const HotelService = () => {
   
 
   return (
-    <MDBContainer className="my-5 gradient-form hotel-container">
+    <MDBContainer className="my-5 gradient-form hotel-container ">
       {/* Título de los paquetes */}
-      <MDBRow className="text-center mb-4">
+      <MDBRow className="text-center mb-4 ">
         <MDBCol col="12">
           <h2 className="mt-2 mb-2 pb-1">Paquetes del Hotel Champiñón</h2>
           <p className="text-muted">Elige el paquete perfecto para tu estadía en nuestro hotel temático</p>
@@ -190,12 +190,12 @@ const HotelService = () => {
                 <MDBCardText>{paquete.descripcion}</MDBCardText>
                 <MDBCardText className="text-primary">${paquete.precio}</MDBCardText>
                 {/* Al hacer clic, actualiza el paquete seleccionado */}
-                <MDBBtn
-                  className="btn-mario w-100"
+                <Button variant="outline-danger"
+                  
                   onClick={() => handleViewDetails(paquete)}
                 >
                   Ver {paquete.id}
-                </MDBBtn>
+                </Button>
               </MDBCardBody>
             </MDBCard>
           </MDBCol>
