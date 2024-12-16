@@ -13,6 +13,7 @@ import Registrate from './components/Login/RegistrarLogin';
 import Recuperarkey from './components/Login/RecuperarKey';
 import HotelService from './components/Servicios/Servicios';
 import Contactanos from './components/Contactenos/Contactenos';
+import CardService from './components/Servicios/CardService';
 
 const App =()=> {
   const [valUser, setvalUser] = useState(true)
@@ -36,6 +37,7 @@ const App =()=> {
       <Route path="/rkey" element={<Recuperarkey />} />
       <Route path="/Servicios" element={<HotelService />} />
       <Route path="/Contáctenos" element={<Contactanos />} />
+      <Route path="/detalle-paquete" element={<CardService />} />
 
 
       </Routes>
