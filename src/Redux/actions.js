@@ -1,5 +1,33 @@
 
+import { CREARUSUARIO } from "./action-types";
+//import axios from "axios";
+//import alertify from "alertifyjs";
 
+
+
+
+export const register_user = (formData) => {
+  return async (dispatch) => {
+    try {
+      // alert("Entro al dispach")
+      const userData = {
+        nombre: formData.nombre,
+        papellido: formData.papellido,
+        sapellido:formData.sapellido,
+        email: formData.email,
+        password: formData.password,
+        role_id: 2,
+      };
+
+      dispatch({
+        type: CREARUSUARIO,
+        payload: userData,
+      });
+    } catch (error) {
+      console.log("Error al enviar la información", error.message);
+    }
+  };
+};
 
 
 

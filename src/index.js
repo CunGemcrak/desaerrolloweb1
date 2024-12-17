@@ -4,6 +4,10 @@ import './index.css';
 import App from './App';
 import 'bootstrap/dist/css/bootstrap.min.css'; // Estilos de Bootstrap
 import 'bootstrap/dist/js/bootstrap.min.js'; 
+
+import 'alertifyjs/build/css/alertify.min.css';
+
+
 import { BrowserRouter } from "react-router-dom"; // Comportamientos de Bootstrap
 import { Provider } from "react-redux";
 import store from "./Redux/store.js";

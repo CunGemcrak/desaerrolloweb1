@@ -1,5 +1,5 @@
 import {
-  LOGIN,
+  LOGIN, CREARUSUARIO
   
 } from "../Redux/action-types";
 
@@ -16,6 +16,11 @@ const reducer = (state = initialState, { type, payload }) => {
         ...state,
         USER: payload,
       }
+      case CREARUSUARIO:
+        return {
+          ...state,
+          USER: payload
+        }
      
     
     default:
