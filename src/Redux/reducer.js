@@ -5,6 +5,7 @@ import {
 
 const initialState = {
   USER: null,
+  LOGINUSER:null,
 };
 
 const reducer = (state = initialState, { type, payload }) => {
@@ -14,7 +15,7 @@ const reducer = (state = initialState, { type, payload }) => {
     case LOGIN:
       return {
         ...state,
-        USER: payload,
+        LOGINUSER: payload,
       }
       case CREARUSUARIO:
         return {

@@ -119,8 +119,27 @@ const Registrate = () => {
       // Aquí agregarías la lógica para enviar los datos al backend
       alert('¡Usuario registrado correctamente!')
       alertify.success('¡Usuario registrado correctamente!');
-
       dispach(register_user(formData))
+      setFormData({
+        nombre: '',
+        papellido:'',
+        sapellido:'',
+        email: '',
+        password: '',
+        confirmPassword: ''
+      });
+       setErrors({
+        nombre: '',
+        papellido:'',
+        sapellido:'',
+        email: '',
+        password: '',
+        confirmPassword: ''
+      });
+
+      
+
+     
     } else {
       alert('Por favor, corrige los errores antes de continuar.')
       alertify.error('Por favor, corrige los errores antes de continuar.');

@@ -1,5 +1,5 @@
 
-import { CREARUSUARIO } from "./action-types";
+import { CREARUSUARIO, LOGIN } from "./action-types";
 //import axios from "axios";
 //import alertify from "alertifyjs";
 
@@ -29,6 +29,26 @@ export const register_user = (formData) => {
   };
 };
 
+
+export const logueoUser = (formData) => {
+  return async (dispatch) => {
+    try {
+      // alert("Entro al dispach")
+      const userData = {
+        email: formData.email,
+        password: formData.password,
+        role_id: 2,
+      };
+
+      dispatch({
+        type: LOGIN,
+        payload: userData,
+      });
+    } catch (error) {
+      console.log("Error al enviar la información", error.message);
+    }
+  };
+};
 
 
 
