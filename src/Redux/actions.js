@@ -1,5 +1,5 @@
 
-import { CREARUSUARIO, LOGIN } from "./action-types";
+import { CREARUSUARIO, LOGIN, RESERVARHOTEL } from "./action-types";
 //import axios from "axios";
 //import alertify from "alertifyjs";
 
@@ -42,6 +42,35 @@ export const logueoUser = (formData) => {
 
       dispatch({
         type: LOGIN,
+        payload: userData,
+      });
+    } catch (error) {
+      console.log("Error al enviar la información", error.message);
+    }
+  };
+};
+
+export const reservaHotel = (formData) => {
+  return async (dispatch) => {
+    try {
+      // alert("Entro al dispach")
+      const userData = {
+        documento:formData.documento,
+        tipoDocumento:formData.tipoDocumento,
+        nombres: formData.nombres, // Fusionamos Primer Nombre y Segundo Nombre en un solo campo
+        papellido: formData.papellido,
+        sapellido: formData.sapellido,
+        celular: formData.celular,
+        email: formData.email,
+        paquete: formData.paquete,
+        numPersonas: formData.numPersonas, // Número de personas, con valor predeterminado de 1
+        precioTotal: formData.precioTotal, // Valor total del paquete
+        descuento: formData.descuento,
+        role_id: 2,
+      };
+
+      dispatch({
+        type: RESERVARHOTEL,
         payload: userData,
       });
     } catch (error) {

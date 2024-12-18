@@ -14,6 +14,8 @@ import Recuperarkey from './components/Login/RecuperarKey';
 import HotelService from './components/Servicios/Servicios';
 import Contactanos from './components/Contactenos/Contactenos';
 import CardService from './components/Servicios/CardService';
+import PerfilUsuario from './components/Usuarios/UsuarioHome/PerfilUsuario';
+import AgregarUsuarioReserva from './components/Usuarios/UsuarioTerminarRegistro/AgregarUsuarioReserva';
 
 const App =()=> {
   const [valUser, setvalUser] = useState(true)
@@ -38,6 +40,8 @@ const App =()=> {
       <Route path="/Servicios" element={<HotelService />} />
       <Route path="/Contáctenos" element={<Contactanos />} />
       <Route path="/detalle-paquete" element={<CardService />} />
+      <Route path="/PerfilUsuario" element={<PerfilUsuario />} />
+      <Route path="/AddUsuarioPaquete" element={<AgregarUsuarioReserva />} />
 
 
       </Routes>

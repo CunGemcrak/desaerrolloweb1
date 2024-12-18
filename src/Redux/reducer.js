@@ -1,11 +1,12 @@
 import {
-  LOGIN, CREARUSUARIO
+  LOGIN, CREARUSUARIO, RESERVARHOTEL
   
 } from "../Redux/action-types";
 
 const initialState = {
   USER: null,
   LOGINUSER:null,
+  RESERVA:null
 };
 
 const reducer = (state = initialState, { type, payload }) => {
@@ -22,6 +23,12 @@ const reducer = (state = initialState, { type, payload }) => {
           ...state,
           USER: payload
         }
+        case RESERVARHOTEL:
+          return{
+            ...state,
+            RESERVA:payload
+
+          }
      
     
     default:

@@ -1,5 +1,8 @@
 export const LOGIN = 'LOGIN'
 export const CREARUSUARIO = 'CREARUSUARIO'
+export const RESERVARHOTEL = 'RESERVARHOTEL'
+
+
 
 /*export const REGISTERUSER = "REGISTERUSER";
 export const REGISTERBUSINESS = "REGISTERBUSINESS";

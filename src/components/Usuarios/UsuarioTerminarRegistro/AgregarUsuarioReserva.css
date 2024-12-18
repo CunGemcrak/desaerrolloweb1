@@ -1,0 +1,23 @@
+.card-style {
+    margin: 20px;
+  }
+  
+  .btn-mario {
+    background-color: #ffcc00;
+    color: black;
+    border: none;
+  }
+  
+  .btn-mario:hover {
+    background-color: #ffb700;
+    color: white;
+  }
+  .naranja {
+    color: rgb(219, 154, 33);
+    font-weight: bold;
+  }
+  .alineartexto{
+    text-align: justify;
+    width: 100%;
+  }
+  

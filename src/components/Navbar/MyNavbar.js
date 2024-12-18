@@ -33,6 +33,9 @@ const MyNavbar = () => {
             <Nav.Link href="/quienessomos" className="navbar-link">Quienes somos</Nav.Link>
             <Nav.Link href="/Servicios" className="navbar-link">Servicios</Nav.Link>
             <Nav.Link href="/Contáctenos" className="navbar-link">Contáctenos</Nav.Link>
+            <Nav.Link href="/PerfilUsuario" className="navbar-link">Perfil</Nav.Link>
+            <Nav.Link href="/AddUsuarioPaquete" className="navbar-link">Agregar a Reserva</Nav.Link>
+
           </Nav>
         </Navbar.Collapse>
       </Container>
