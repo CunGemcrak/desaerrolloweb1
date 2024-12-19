@@ -40,3 +40,6 @@
 .bordesimg{
   border-radius: 100%;
 }
+.underline{
+  text-decoration: none; /* Elimina el subrayado */
+}

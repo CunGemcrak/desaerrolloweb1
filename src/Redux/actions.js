@@ -1,6 +1,7 @@
 
+import alertify from "alertifyjs";
 import { CREARUSUARIO, LOGIN, RESERVARHOTEL } from "./action-types";
-//import axios from "axios";
+import axios from "axios";
 //import alertify from "alertifyjs";
 
 
@@ -9,46 +10,73 @@ import { CREARUSUARIO, LOGIN, RESERVARHOTEL } from "./action-types";
 export const register_user = (formData) => {
   return async (dispatch) => {
     try {
-      // alert("Entro al dispach")
+     //  alert("Entro al dispach")
       const userData = {
+        idusuario:'1067857454',
         nombre: formData.nombre,
         papellido: formData.papellido,
         sapellido:formData.sapellido,
         email: formData.email,
-        password: formData.password,
+        celular:'00000000',
+        passwords: formData.password,
+        imagen: 'https://res.cloudinary.com/dss2hdisa/image/upload/9e46d2905d70d779a552ff036d5e5b1e_leirjn.jpg',
         role_id: 2,
       };
+      const endpoint = "http://localhost:3001/crear";
+    //  alert(endpoint)
+
+      const response = await axios.post(endpoint, userData);
+      
+        
+
+       alert("El data es " + JSON.stringify(response.data) )
+
+
+
+
 
       dispatch({
         type: CREARUSUARIO,
-        payload: userData,
+        payload: response,
       });
     } catch (error) {
       console.log("Error al enviar la información", error.message);
     }
   };
 };
-
 
 export const logueoUser = (formData) => {
   return async (dispatch) => {
     try {
-      // alert("Entro al dispach")
       const userData = {
         email: formData.email,
-        password: formData.password,
-        role_id: 2,
+        passwords: formData.password, // Cambiar clave para coincidir con PHP
       };
+
+      //const endpoint = "http://localhost:3001/leer";
+      const endpoint = `http://localhost:3001/leer?email=${encodeURIComponent(userData.email)}&passwords=${encodeURIComponent(userData.passwords)}`;
+
+      const response = await axios.get(endpoint,  userData ); // Cambiar a POST para enviar JSON
+      
+    
+      // Verificar y corregir la URL de la imagen si está presente
+      if (response.data && response.data.imagen) {
+        // Remover las barras invertidas de la URL de la imagen
+        response.data.imagen = response.data.imagen.replace(/\\/g, ''); // Elimina todas las barras invertidas
+      }
+     
+     
 
       dispatch({
         type: LOGIN,
-        payload: userData,
+        payload: response.data,
       });
     } catch (error) {
       console.log("Error al enviar la información", error.message);
     }
   };
 };
+
 
 export const reservaHotel = (formData) => {
   return async (dispatch) => {

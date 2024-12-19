@@ -4,7 +4,7 @@ import {
 } from "../Redux/action-types";
 
 const initialState = {
-  USER: null,
+  USER: false,
   LOGINUSER:null,
   RESERVA:null
 };
@@ -14,9 +14,18 @@ const reducer = (state = initialState, { type, payload }) => {
 
   switch (type) {
     case LOGIN:
+      const parsedPayload = JSON.parse(payload);
+      if (parsedPayload.message === "Usuario no encontrado") {
+        alert("Usuario no encontrado"); // Mostramos el mensaje de alerta
+        return {
+          ...state,
+          USER: false,  // Establecemos USER a false si el mensaje es "Usuario no encontrado"
+        };
+      }
       return {
         ...state,
-        LOGINUSER: payload,
+        LOGINUSER: parsedPayload,
+        USER:true
       }
       case CREARUSUARIO:
         return {

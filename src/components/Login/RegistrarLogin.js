@@ -116,11 +116,14 @@ const Registrate = () => {
   const handleSubmit = () => {
   // alert("Error fatal")
     if (isFormValid) {
-      // Aquí agregarías la lógica para enviar los datos al backend
+     
       alert('¡Usuario registrado correctamente!')
       alertify.success('¡Usuario registrado correctamente!');
       dispach(register_user(formData))
-      setFormData({
+
+
+      
+     /* setFormData({
         nombre: '',
         papellido:'',
         sapellido:'',
@@ -136,7 +139,7 @@ const Registrate = () => {
         password: '',
         confirmPassword: ''
       });
-
+*/
       
 
      

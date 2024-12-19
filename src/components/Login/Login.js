@@ -4,12 +4,25 @@ import { MDBContainer, MDBRow, MDBCol, MDBInput } from 'mdb-react-ui-kit';
 import './Login.css';
 import alertify from 'alertifyjs';
 
-import { useDispatch } from 'react-redux'; // Si usas Redux para manejar el estado de la sesión
+import { useDispatch, useSelector } from 'react-redux'; // Si usas Redux para manejar el estado de la sesión
 import { logueoUser } from '../../Redux/actions';
+import { useNavigate } from 'react-router';
+
 
 const Login = () => {
+  const USER = useSelector((state) => state.USER);
+
   // Establecemos los estados para los campos y los mensajes de error
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+
+  useEffect(() => {
+    if (USER) {  // Si USER es verdadero
+      navigate('/PerfilUsuario');  // Redirigir al perfil de usuario
+    }
+  }, [USER, navigate]);  // El efecto se ejecuta cuando 'USER' o 'navigate' cambian
+
   const [formData, setFormData] = useState({
     email: '',
     password: ''
