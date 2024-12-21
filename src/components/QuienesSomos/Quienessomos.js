@@ -12,10 +12,10 @@ const QuienesSomos = () => {
       </header>
 
       {/* Carrusel de imágenes */}
-      <Carousel className="carrusel">
+      <Carousel className="carrusel" interval={2000} pause="false">
         <Carousel.Item>
           <img
-            className="d-block w-100"
+            className="d-block mx-auto imagen-carrusel"
             src="https://res.cloudinary.com/dss2hdisa/image/upload/cfcbddca1570b66bf8fa12277dd1eac8_mghk0g.png"
             alt="Habitaciones temáticas"
           />
@@ -28,7 +28,7 @@ const QuienesSomos = () => {
         </Carousel.Item>
         <Carousel.Item>
           <img
-            className="d-block w-100"
+            className="d-block mx-auto imagen-carrusel"
             src="https://res.cloudinary.com/dss2hdisa/image/upload/FOTO-LR-2024-04-13T095740.476_ybwnpn.webp"
             alt="Áreas de recreación"
           />
@@ -41,7 +41,7 @@ const QuienesSomos = () => {
         </Carousel.Item>
         <Carousel.Item>
           <img
-            className="d-block w-100"
+            className="d-block mx-auto imagen-carrusel"
             src="https://res.cloudinary.com/dss2hdisa/image/upload/mario-1_ibf9dg.jpg"
             alt="Eventos Temáticos"
           />
@@ -56,7 +56,11 @@ const QuienesSomos = () => {
 
       {/* Sección de descripción */}
       <section className="descripcion">
-       
+        <img
+          src="https://m.media-amazon.com/images/I/71-bZWL-+mL._AC_SX679_.jpg"
+          alt="Mario Bros"
+          className="img-mario mt-5"
+        />
         <div className="texto">
           <h2>Sobre Nosotros</h2>
           <p>
