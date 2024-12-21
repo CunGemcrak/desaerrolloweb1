@@ -78,8 +78,8 @@ const MyNavbar = () => {
             <NavLink to="/Contáctenos" className="navbar-link underline">Contáctenos</NavLink>
            {menuelement === 2 ? <NavLink to="/PerfilUsuario" className="navbar-link underline">Perfil</NavLink>:null}
             {menuelement === 2 ?<NavLink to="/AddUsuarioPaquete" className="navbar-link underline">Agregar a Reserva</NavLink>:null}
-            <NavLink to="/AdminCrearPaquete" className="navbar-link underline">Crear Paquete</NavLink>
-            <NavLink to="/AdminListapaquetes" className="navbar-link underline">Acciones Paquete</NavLink>
+            {menuelement === 1 ? <NavLink to="/AdminCrearPaquete" className="navbar-link underline">Crear Paquete</NavLink>:null}
+            {menuelement === 1 ? <NavLink to="/AdminListapaquetes" className="navbar-link underline">Acciones Paquete</NavLink>:null}
           </Nav>
         </Navbar.Collapse>
       </Container>

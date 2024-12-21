@@ -12,6 +12,8 @@ import { useNavigate } from 'react-router';
 const Login = () => {
   const USER = useSelector((state) => state.USER);
   const CREATEUSER = useSelector((state)=>state.CREATEUSER)
+  const LOGINUSER = useSelector((state)=>state.LOGINUSER || [])
+
 
   // Establecemos los estados para los campos y los mensajes de error
   const dispatch = useDispatch();
@@ -19,8 +21,12 @@ const Login = () => {
 
 
   useEffect(() => {
-    if (USER) {  // Si USER es verdadero
+    if (USER && LOGINUSER.role_id !== '3') {  // Si USER es verdadero
       navigate('/PerfilUsuario');  // Redirigir al perfil de usuario
+    }else
+    if(LOGINUSER.role_id === '3'){
+      alert("usuario Bloqueado Comuniquese con el administrador")
+      dispatch(cerrarSesion());
     }
   }, [USER, navigate]);  // El efecto se ejecuta cuando 'USER' o 'navigate' cambian
 
