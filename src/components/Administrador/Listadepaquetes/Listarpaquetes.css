@@ -1,0 +1,29 @@
+/* Alineación de las etiquetas a la izquierda y color naranja */
+.form-label {
+  text-align: left;
+  color: orange;
+}
+
+/* Otros estilos generales para el formulario */
+.paquete-actualizar {
+  margin-top: 20px;
+
+}
+
+.paquete-card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+
+.paquete-card .card-body {
+  padding: 16px;
+}
+
+.paquete-card .card-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.text-center {
+  text-align: center;
+}

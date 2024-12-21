@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Button, Card, Nav } from 'react-bootstrap';
+//import { Button, Card, Nav } from 'react-bootstrap';
+import { Form, Button, Card, Nav } from 'react-bootstrap';
 import {
   MDBContainer,
   MDBRow,
@@ -10,18 +11,24 @@ import './RegistrarUsuario.css'; // Asegúrate de tener los estilos personalizad
 import alertify from 'alertifyjs';
 
 import { register_user } from '../../Redux/actions';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router';
 
 const Registrate = () => {
   // Establecemos los estados para los campos y los mensajes de error
   const dispach = useDispatch()
+  const navigate = useNavigate()
+  const CREARUSER = useSelector((state)=>state.CREATEUSER)
   const [formData, setFormData] = useState({
     nombre: '',
     papellido:'',
     sapellido:'',
     email: '',
     password: '',
-    confirmPassword: ''
+    confirmPassword: '',
+    celular:'',
+    tipoDocumento:'',
+    ndocumento:'',
   });
   const [errors, setErrors] = useState({
     nombre: '',
@@ -29,7 +36,10 @@ const Registrate = () => {
     sapellido:'',
     email: '',
     password: '',
-    confirmPassword: ''
+    confirmPassword: '',
+    celular:'',
+    tipoDocumento:'',
+    ndocumento:'',
   });
   
   const [isFormValid, setIsFormValid] = useState(false);
@@ -95,6 +105,43 @@ const Registrate = () => {
    
   };
 
+  const validarCelular = (valor) => {
+    if (!valor || valor.trim() === '') {
+      setErrors((prev) => ({ ...prev, celular: 'El campo celular no puede estar vacío.' }));
+      return false;
+    }
+  }
+  const validarTipoDocumento = (tipoDocumento) => {
+    // Verificamos que el tipo de documento no esté vacío y sea una de las opciones válidas
+    const tiposValidos = ['DNI', 'Pasaporte', 'Cedula']; // Opciones válidas para tipo de documento
+    if (!tipoDocumento) {
+      setErrors((prev) => ({ ...prev, tipoDocumento: 'Por favor, selecciona un tipo de documento.' }));
+      return false;
+    }
+    if (!tiposValidos.includes(tipoDocumento)) {
+      setErrors((prev) => ({ ...prev, tipoDocumento: 'Tipo de documento no válido.' }));
+      return false;
+    }
+    setErrors((prev) => ({ ...prev, tipoDocumento: '' }));
+    return true;
+  };
+
+
+
+  
+  const validarDocumento = (documento) =>{
+    const isNumber = /^[0-9]+$/; 
+    if (!documento || documento.length <= 5) {
+      setErrors((prev) => ({ ...prev, documento: 'El documento debe tener más de 5 números.' }));
+      return false;
+    }
+    if (!isNumber.test(documento)) {
+      setErrors((prev) => ({ ...prev, documento: 'El documento debe contener solo números.' }));
+      return false;
+    }
+    setErrors((prev) => ({ ...prev, documento: '' }));
+    return true;
+  }
   // Validamos el campo cuando el usuario interactúa
   const handleBlur = (e) => {
     const { id, value } = e.target;
@@ -105,6 +152,9 @@ const Registrate = () => {
     if (id === 'register-email') validateEmail(value);
     if (id === 'register-password') validatePassword(value);
     if (id === 'register-confirm-password') validateConfirmPassword(value, formData.password);
+    if ( id === 'celular') validarCelular(value);
+      if(id === 'tipoDocumento') validarTipoDocumento(value);
+      if(id === 'ndocumento') validarDocumento(value)
   };
 
   // Usamos useEffect para verificar la validez del formulario
@@ -112,18 +162,10 @@ const Registrate = () => {
     checkFormValidity();
   }, [errors, formData]);
 
-  // Función de registro
-  const handleSubmit = () => {
-  // alert("Error fatal")
-    if (isFormValid) {
-     
-      alert('¡Usuario registrado correctamente!')
-      alertify.success('¡Usuario registrado correctamente!');
-      dispach(register_user(formData))
 
-
-      
-     /* setFormData({
+  useEffect(()=>{
+    if(CREARUSER){
+      setFormData({
         nombre: '',
         papellido:'',
         sapellido:'',
@@ -139,7 +181,21 @@ const Registrate = () => {
         password: '',
         confirmPassword: ''
       });
-*/
+
+      navigate('/registrate')
+    }
+  },[CREARUSER])
+  // Función de registro
+  const handleSubmit = () => {
+  // alert("Error fatal")
+    if (isFormValid) {
+     
+      alert('¡Usuario registrado correctamente!')
+      alertify.success('¡Usuario registrado correctamente!');
+      dispach(register_user(formData))
+
+
+    
       
 
      
@@ -160,6 +216,79 @@ const Registrate = () => {
             </Card.Header>
             <Card.Body className="Hotel_Body">
               <div className="card-container">
+
+
+
+
+              {/* Tipo de Documento */}
+                <MDBRow className="mb-8 d-flex w-100">
+              <MDBCol>
+                <div className="d-flex form-label texto-mario">Tipo de Documento Usuario</div>
+                <Form.Control
+                  as="select"
+                  id="tipoDocumento"
+                  name="tipoDocumento"
+                  value={formData.tipoDocumento}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  className="form-control-mario"
+                >
+                  <option value="">Seleccione</option>
+                  <option value="DNI">DNI</option>
+                  <option value="Pasaporte">Pasaporte</option>
+                  <option value="Cedula">Cédula</option>
+                </Form.Control>
+                {errors.tipoDocumento && <p className="text-danger">{errors.tipoDocumento}</p>}
+              </MDBCol>
+            </MDBRow>
+
+
+
+
+           {/* Número de Documento */}
+             <MDBRow className="mb-8 d-flex w-100">
+              <MDBCol>
+                <div className="d-flex form-label texto-mario">Número DNI/CC/PASAPORTE</div>  
+                <MDBInput
+                  type="text"
+                  placeholder="Ingrese su número de documento"
+                  id="ndocumento"
+                  name="ndocumento"
+                  value={formData.ndocumento}
+                  onChange={handleChange}
+                  onBlur = {handleBlur}
+                  className="form-control-mario"
+                />
+                {errors.ndocumento && <p className="text-danger">{errors.ndocumento}</p>}
+              </MDBCol>
+            </MDBRow>
+
+           
+
+
+                {/*Celular*/}
+
+            
+              <MDBRow className="mb-8 d-flex w-100">
+                          <MDBCol>
+                            <div className="d-flex form-label texto-mario">Celular</div>  
+                            <MDBInput
+                              type="text"
+                              placeholder="Ingrese su número de documento"
+                              id="celular"
+                              name="celular"
+                              value={formData.celular}
+                              onChange={handleChange}
+                              onBlur = {handleBlur}
+                              className="form-control-mario"
+                            />
+                            {errors.celular && <p className="text-danger">{errors.celular}</p>}
+                          </MDBCol>
+                        </MDBRow>
+
+
+
+
                 {/* Fila para los inputs */}
                 <MDBRow className="mb-8 d-flex w-100">
                   <MDBCol>
@@ -177,6 +306,9 @@ const Registrate = () => {
                   </MDBCol>
                 </MDBRow>
 
+
+
+
                 <MDBRow className="mb-8 d-flex w-100">
                   <MDBCol>
                     <div htmlFor="register-papellido" className="d-flex form-label texto-mario">Primer Apellido</div>
@@ -192,6 +324,11 @@ const Registrate = () => {
                     {errors.papellido && <p className="text-danger">{errors.papellido}</p>}
                   </MDBCol>
                 </MDBRow>
+              
+              
+              
+              
+              
                 <MDBRow className="mb-8 d-flex w-100">
                   <MDBCol>
                     <div htmlFor="register-sapellido" className="d-flex form-label texto-mario">Segundo Apellido</div>

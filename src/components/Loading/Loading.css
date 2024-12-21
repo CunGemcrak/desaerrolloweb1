@@ -1,0 +1,24 @@
+.loading-container {
+    display: flex;
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; /* Centra verticalmente */
+    height: 100vh;
+    background-color: black;
+    position: relative;
+    overflow: hidden;
+    animation: moveBackground 5s linear infinite;
+  }
+  
+  .loading-image {
+    width: 100px; /* Ajusta el tamaño de la imagen según lo necesites */
+  }
+  
+  @keyframes moveBackground {
+    0% {
+      background-position: 0 0;
+    }
+    100% {
+      background-position: 100% 0;
+    }
+  }
+  

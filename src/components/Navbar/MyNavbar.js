@@ -1,15 +1,19 @@
 import { Navbar, Nav, Image, Container } from 'react-bootstrap';
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import './MyNavbar.css';
 import { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+
+import { cerrarSesion } from '../../Redux/actions';
 
 const MyNavbar = () => {
   const USER = useSelector((store) => store.USER)
+  const navigator = useNavigate();
 
-  const USERMENU = useSelector((store)=>store.LOGINUSER)
+  const USERMENU = useSelector((store)=>store.LOGINUSER )
 
   const [menuelement, setMenuElement] =useState(0)
+  const dispatch = useDispatch()
 
 
 
@@ -23,17 +27,22 @@ const MyNavbar = () => {
           setMenuElement(1)
 
         // Redirigir al perfil de usuario
-      } else {
+      } else
+      if(USERMENU === false) {
         setMenuElement(0)
       }
-      alert(USERMENU.role_id)
+  
     }
-    alert(menuelement)
+   // alert(USERMENU)
   }, [USER, USERMENU, menuelement]);
 
 
+ const hondleCerrarSesion = ()=>{
+  setMenuElement(0)
+  dispatch(cerrarSesion())
 
-
+  
+ }
 
   
   return (
@@ -62,14 +71,15 @@ const MyNavbar = () => {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto">
             <NavLink to="/" className="navbar-link underline" >Inicio</NavLink>
-           {menuelement === 0 ? <NavLink to="/registrate" className="navbar-link underline">Login</NavLink> : <NavLink to="/registrate" className="navbar-link underline">Salir</NavLink> }
+           {menuelement === 0 ? <NavLink to="/registrate" className="navbar-link underline">Login</NavLink> : <NavLink to="/registrate" className="navbar-link underline" onClick={hondleCerrarSesion}>Salir</NavLink> }
             <NavLink to="/registro" className="navbar-link underline">Reservar</NavLink>
             <NavLink to="/quienessomos" className="navbar-link underline">Quienes somos</NavLink>
             <NavLink to="/Servicios" className="navbar-link underline">Servicios</NavLink>
             <NavLink to="/Contáctenos" className="navbar-link underline">Contáctenos</NavLink>
-            <NavLink to="/PerfilUsuario" className="navbar-link underline">Perfil</NavLink>
-            <NavLink to="/AddUsuarioPaquete" className="navbar-link underline">Agregar a Reserva</NavLink>
-
+           {menuelement === 2 ? <NavLink to="/PerfilUsuario" className="navbar-link underline">Perfil</NavLink>:null}
+            {menuelement === 2 ?<NavLink to="/AddUsuarioPaquete" className="navbar-link underline">Agregar a Reserva</NavLink>:null}
+            <NavLink to="/AdminCrearPaquete" className="navbar-link underline">Crear Paquete</NavLink>
+            <NavLink to="/AdminListapaquetes" className="navbar-link underline">Acciones Paquete</NavLink>
           </Nav>
         </Navbar.Collapse>
       </Container>

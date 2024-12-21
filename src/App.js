@@ -16,11 +16,16 @@ import Contactanos from './components/Contactenos/Contactenos';
 import CardService from './components/Servicios/CardService';
 import PerfilUsuario from './components/Usuarios/UsuarioHome/PerfilUsuario';
 import AgregarUsuarioReserva from './components/Usuarios/UsuarioTerminarRegistro/AgregarUsuarioReserva';
+import Crearpaquete from './components/Administrador/Crearpaquetes/Crearpaquetes';
+import Listapaquetes from './components/Administrador/Listadepaquetes/Listadepaquetes';
+import Actualizarpaquete from './components/Administrador/ActualizarPaquete/Actualizarpaquete';
+
 
 const App =()=> {
   const [valUser, setvalUser] = useState(true)
   return (
     <div className="App">
+     
      { valUser ? <header>
                       <MyNavbar/> 
                 </header> 
@@ -28,7 +33,7 @@ const App =()=> {
     }
       <div>
      {/*<h1>DESARROLLO WEB</h1>  <br/>*/} 
-     
+   
       <Routes>
 
       <Route path="/" element={<Inicio />} />
@@ -42,6 +47,9 @@ const App =()=> {
       <Route path="/detalle-paquete" element={<CardService />} />
       <Route path="/PerfilUsuario" element={<PerfilUsuario />} />
       <Route path="/AddUsuarioPaquete" element={<AgregarUsuarioReserva />} />
+      <Route path="/AdminCrearPaquete" element={<Crearpaquete />} />
+      <Route path="/AdminListapaquetes" element={<Listapaquetes />} />
+      <Route path="/modificarpaquete/:cont" element={<Actualizarpaquete />} />
 
 
       </Routes>

@@ -1,0 +1,58 @@
+/* Estilo para las etiquetas */
+.form-label {
+    font-weight: bold;
+    font-size: 1rem;
+    color: #333;
+  }
+  
+  /* Estilo de los inputs */
+  .form-control-mario {
+    border-radius: 10px;
+    background-color: #fff0b3;
+    border: 2px solid #ffcc00;
+    margin-bottom: 10px; /* Asegura que haya espacio entre los inputs */
+  }
+  
+  /* Estilo para los textos */
+  .texto-mario {
+    font-size: 1rem;
+    color: #ff0000;
+  }
+  
+  /* Estilo de los botones */
+  .btn-mario {
+    background-color: #ff0000;
+    color: white;
+    font-weight: bold;
+    border-radius: 25px;
+    transition: background-color 0.3s;
+    width: 100%;
+  }
+  
+  .btn-mario:hover {
+    background-color: #ff6600;
+    color: green;
+  }
+  
+  /* Espacio extra alrededor de los inputs */
+  .card-container {
+    padding: 20px;
+    display: block;
+    flex-direction: column;
+  }
+  
+  .card-style {
+    padding: 30px;
+  }
+  
+  .Hotel_Body {
+    padding: 0;
+    display: block;
+    flex-direction: column;
+  }
+  
+  .textocolor {
+    font-size: 1.5rem;
+    color: #ffcc00;
+  }
+  

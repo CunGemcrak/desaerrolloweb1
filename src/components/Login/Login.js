@@ -5,12 +5,13 @@ import './Login.css';
 import alertify from 'alertifyjs';
 
 import { useDispatch, useSelector } from 'react-redux'; // Si usas Redux para manejar el estado de la sesión
-import { logueoUser } from '../../Redux/actions';
+import { logueoUser, cerrarSesion} from '../../Redux/actions';
 import { useNavigate } from 'react-router';
 
 
 const Login = () => {
   const USER = useSelector((state) => state.USER);
+  const CREATEUSER = useSelector((state)=>state.CREATEUSER)
 
   // Establecemos los estados para los campos y los mensajes de error
   const dispatch = useDispatch();
@@ -80,17 +81,23 @@ const Login = () => {
     checkFormValidity();
   }, [errors, formData]);
 
+
+  useEffect(()=>{
+    if(CREATEUSER){
+      dispatch(cerrarSesion())
+    }
+  },[dispatch, CREATEUSER])
   // Función para iniciar sesión
   const handleSubmit = () => {
     if (isFormValid) {
       // Aquí agregarías la lógica para iniciar sesión, por ejemplo, llamando a una API o acción de Redux
-      alert('¡Inicio de sesión exitoso!');
-      alertify.success('¡Bienvenido al Hotel Champiñón!');
+      //alert('¡Inicio de sesión exitoso!');
+      //alertify.success('¡Bienvenido al Hotel Champiñón!');
       // Dispatch de login si usas Redux
       // dispatch(login_user(formData));
 
       dispatch(logueoUser(formData))
-
+           
 
       setFormData({ email: '', password: '' });
       setErrors({ email: '', password: '' });

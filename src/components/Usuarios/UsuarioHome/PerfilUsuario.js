@@ -1,39 +1,68 @@
-import React, { useState } from 'react';
-import { Button, Card, Nav } from 'react-bootstrap';
-import {
-  MDBContainer,
-  MDBRow,
-  MDBCol,
-  MDBInput
-} from 'mdb-react-ui-kit';
+import React, { useEffect, useState } from 'react';
+import { Button, Card, Form } from 'react-bootstrap'; // Importar "Form"
+import { MDBContainer, MDBRow, MDBCol } from 'mdb-react-ui-kit';
 import alertify from 'alertifyjs';
-import { usuarios } from '../../../bdUsuarios';
+import { useDispatch, useSelector } from 'react-redux';
+
+import { UserActualizar } from '../../../Redux/actions';
 
 const PerfilUsuario = () => {
-  const [userData, setUserData] = useState(usuarios[0]); // Cargamos el primer usuario como ejemplo
-  const [isEditing, setIsEditing] = useState(false); // Controla si estamos en modo de edición
-  const [formData, setFormData] = useState({ ...userData }); // Estado local para edición
+  const dispatch = useDispatch();
+  const USUARIO = useSelector((state) => state.LOGINUSER);
+  const USER = useSelector((state) => state.USER);
 
-  // Maneja cambios en los campos del formulario
+  const [userData, setUserData] = useState({
+    cont: '',
+    tdocumento: '',
+    idusuario: '',
+    imagen: '',
+    nombre: '',
+    papellido: '',
+    sapellido: '',
+    celular: '',
+    email: '',
+    passwords: '',
+    role: '',
+  });
+
+  const [isEditing, setIsEditing] = useState(false);
+  const [formData, setFormData] = useState({ ...userData });
+
+  useEffect(() => {
+    if (USER && USUARIO.role_id > 0) {
+      const updatedData = {
+        cont: USUARIO.cont,
+        tdocumento: USUARIO.tdocumento,
+        idusuario: USUARIO.idusuario,
+        imagen: USUARIO.imagen,
+        nombre: USUARIO.nombre,
+        papellido: USUARIO.papellido,
+        sapellido: USUARIO.sapellido,
+        celular: USUARIO.celular,
+        email: USUARIO.email,
+        passwords: USUARIO.passwords,
+        role_id: USUARIO.role_id,
+      };
+      setUserData(updatedData);
+      setFormData(updatedData);
+    }
+  }, [USER, USUARIO]);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
-  // Maneja el botón de actualizar
-  const handleUpdate = () => {
-    setIsEditing(true);
-  };
+  const handleUpdate = () => setIsEditing(true);
 
-  // Maneja el botón de cancelar
   const handleCancel = () => {
-    setFormData({ ...userData }); // Revertimos a los datos originales
+    setFormData({ ...userData });
     setIsEditing(false);
   };
 
-  // Maneja el botón de guardar
   const handleSave = () => {
-    setUserData({ ...formData }); // Guardamos los cambios
+    dispatch(UserActualizar(formData));
+    setUserData({ ...formData });
     setIsEditing(false);
     alertify.success('Datos actualizados correctamente.');
   };
@@ -64,71 +93,69 @@ const PerfilUsuario = () => {
                   )}
                 </MDBCol>
                 <MDBCol md="8">
-                  <div className="mb-3">
-                    <label className="form-label">Nombre</label>
-                    <MDBInput
-                      name="nombre"
-                      type="text"
-                      value={formData.nombre}
-                      onChange={handleChange}
-                      disabled={!isEditing}
-                    />
-                  </div>
-                  <div className="mb-3">
-                    <label className="form-label">Primer Apellido</label>
-                    <MDBInput
-                      name="papellido"
-                      type="text"
-                      value={formData.papellido}
-                      onChange={handleChange}
-                      disabled={!isEditing}
-                    />
-                  </div>
-                  <div className="mb-3">
-                    <label className="form-label">Segundo Apellido</label>
-                    <MDBInput
-                      name="sapellido"
-                      type="text"
-                      value={formData.sapellido}
-                      onChange={handleChange}
-                      disabled={!isEditing}
-                    />
-                  </div>
-                  <div className="mb-3">
-                    <label className="form-label">Correo Electrónico</label>
-                    <MDBInput
-                      name="email"
-                      type="email"
-                      value={formData.email}
-                      onChange={handleChange}
-                      disabled={!isEditing}
-                    />
-                  </div>
-                  <div className="mb-3">
-                    <label className="form-label">Celular</label>
-                    <MDBInput
-                      name="celular"
-                      type="text"
-                      value={formData.celular}
-                      onChange={handleChange}
-                      disabled={!isEditing}
-                    />
-                  </div>
-                  <div className="mb-3">
-                    <label className="form-label">Rol</label>
-                    <MDBInput
-                      name="role"
-                      type="text"
-                      value={
-                        formData.role === '1'
-                          ? 'Administrador'
-                          : formData.role === '2'
-                          ? 'Usuario Regular'
-                          : 'Invitado'
-                      }
-                      disabled
-                    />
-                  </div>
+                  {/* Tipo de Documento */}
+                  <MDBRow className="mb-3">
+                    <MDBCol>
+                      <label className="d-flex form-label texto-mario">Tipo de Documento Usuario</label>
+                      <Form.Control
+                        as="select"
+                        id="tdocumento"
+                        name="tdocumento"
+                        value={formData.tdocumento}
+                        onChange={handleChange}
+                        disabled={!isEditing}
+                        className="form-control-mario"
+                      >
+                        <option value="">Seleccione</option>
+                        <option value="DNI">DNI</option>
+                        <option value="Pasaporte">Pasaporte</option>
+                        <option value="Cedula">Cédula</option>
+                      </Form.Control>
+                    </MDBCol>
+                  </MDBRow>
+                  {/* Campos dinámicos */}
+                  {[
+                    { label: 'Número Documento', name: 'idusuario', type: 'text' },
+                    { label: 'Nombre', name: 'nombre', type: 'text' },
+                    { label: 'Primer Apellido', name: 'papellido', type: 'text' },
+                    { label: 'Segundo Apellido', name: 'sapellido', type: 'text' },
+                    { label: 'Correo Electrónico', name: 'email', type: 'email' },
+                    { label: 'Celular', name: 'celular', type: 'text' },
+                  ].map(({ label, name, type }) => (
+                    <MDBRow className="mb-3" key={name}>
+                      <MDBCol>
+                        <label className="d-flex form-label texto-mario">{label}</label>
+                        <Form.Control
+                          type={type}
+                          id={name}
+                          name={name}
+                          value={formData[name]}
+                          onChange={handleChange}
+                          disabled={!isEditing}
+                          className="form-control-mario"
+                        />
+                      </MDBCol>
+                    </MDBRow>
+                  ))}
+                  {/* Rol */}
+                  <MDBRow className="mb-3">
+                    <MDBCol>
+                      <label className="d-flex form-label texto-mario">Rol</label>
+                      <Form.Control
+                        type="text"
+                        value={
+                          formData.role_id === '1'
+                            ? 'Administrador'
+                            : formData.role_id === '2'
+                            ? 'Usuario Regular'
+                            : 'Invitado'
+                        }
+                        disabled
+                        className="form-control-mario"
+                      />
+                    </MDBCol>
+                  </MDBRow>
+                  {/* Botones */}
                   <div className="text-center">
                     {!isEditing ? (
                       <Button className="btn-mario" onClick={handleUpdate}>
@@ -136,7 +163,7 @@ const PerfilUsuario = () => {
                       </Button>
                     ) : (
                       <>
-                        <Button className="btn-success " onClick={handleSave}>
+                        <Button className="btn-success" onClick={handleSave}>
                           Guardar
                         </Button>
                         <Button className="btn-danger m-2" onClick={handleCancel}>
