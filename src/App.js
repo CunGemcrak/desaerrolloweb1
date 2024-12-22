@@ -19,6 +19,9 @@ import AgregarUsuarioReserva from './components/Usuarios/UsuarioTerminarRegistro
 import Crearpaquete from './components/Administrador/Crearpaquetes/Crearpaquetes';
 import Listapaquetes from './components/Administrador/Listadepaquetes/Listadepaquetes';
 import Actualizarpaquete from './components/Administrador/ActualizarPaquete/Actualizarpaquete';
+import Adminlistausuarios from './components/Administrador/AdminUsuarios/AdminListaUsuarios';
+import AdAdministrarreservasusuarios from './components/Administrador/Administrarreservas/Administrarreservas';
+
 
 
 const App =()=> {
@@ -50,6 +53,11 @@ const App =()=> {
       <Route path="/AdminCrearPaquete" element={<Crearpaquete />} />
       <Route path="/AdminListapaquetes" element={<Listapaquetes />} />
       <Route path="/modificarpaquete/:cont" element={<Actualizarpaquete />} />
+      <Route path="/allusers" element={<Adminlistausuarios />} />
+      <Route path="/allreservas" element={<AdAdministrarreservasusuarios />} />
+
+      
+
 
 
       </Routes>

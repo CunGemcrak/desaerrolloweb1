@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Form, Button, Container, Card, Row, Col } from 'react-bootstrap';
 import { MDBCol } from 'mdb-react-ui-kit';
 import './Registrar.css';
-import { paquetes } from '../../bd';
+//import { paquetes } from '../../bd';
 import alertify from 'alertifyjs';
 import { useDispatch, useSelector } from 'react-redux';
 import { reservaHotel } from '../../Redux/actions';
@@ -13,7 +13,7 @@ const RegistrarHotelForm = () => {
   const LOGINUSER = useSelector((state) =>
     state.LOGINUSER !== undefined && state.LOGINUSER !== null ? state.LOGINUSER : null
   );
-
+const paquetes = useSelector((state)=>state.PAQUETES || [])
   const [activar, setActivar] = useState(USER);
   const [formData, setFormData] = useState({
     paquete: '',
@@ -32,11 +32,11 @@ const RegistrarHotelForm = () => {
         (paquete) => paquete.value === formData.paquete
       );
       if (paqueteSeleccionado) {
-        let precioTotal = paqueteSeleccionado.precio;
+        let precioTotal = paqueteSeleccionado.precio || 0; // Asegura un valor numérico
         if (paqueteSeleccionado.tipoPrecio === 'individual') {
           precioTotal *= formData.numPersonas;
         }
-        setFormData((prev) => ({ ...prev, precioTotal }));
+        setFormData((prev) => ({ ...prev, precioTotal: Number(precioTotal) }));
       }
     }
   }, [formData.paquete, formData.numPersonas]);
@@ -173,7 +173,7 @@ const RegistrarHotelForm = () => {
                   <Form.Label>Total a Pagar</Form.Label>
                 </Col>
                 <Col sm={8}>
-                  <p><strong>${formData.precioTotal.toFixed(2)}</strong></p>
+                  <p><strong>${Number(formData.precioTotal).toFixed(2)}</strong></p>
                 </Col>
               </Row>
             )}

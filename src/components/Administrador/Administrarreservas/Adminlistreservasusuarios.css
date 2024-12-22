@@ -1,0 +1,45 @@
+/* Listapaquetes.css */
+.paquetes-lista {
+    margin-top: 20px;
+  }
+  
+  .paquete-card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+  }
+  
+  .paquete-card img {
+    height: 200px;
+    object-fit: cover;
+  }
+  
+  .paquete-card .card-body {
+    padding: 16px;
+  }
+  
+  .paquete-card .card-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+  
+  .text-center {
+    text-align: center;
+  }
+
+
+  .paquete-actualizar{
+    text-align: center;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+  }
+  .bodydivactualizadr{
+    text-align: center;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+  }

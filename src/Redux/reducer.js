@@ -1,7 +1,7 @@
 import {
   LOGIN, CREARUSUARIO, RESERVARHOTEL, CERRARSESION, 
   ACTUALIZARUSUARIO, LISTADERESERVAS, ELIMINARRESERVA,
-  ADMINCREARPAQUETE, ADMINLISTAPAQUETES, ELIMINARPAQUETE, ADMINACTUALIZARPAQUETE
+  ADMINCREARPAQUETE, ADMINLISTAPAQUETES, ELIMINARPAQUETE, ADMINACTUALIZARPAQUETE, LISTADOPAQUETESALL, LISTAUSUARIOSALL
   
 } from "../Redux/action-types";
 
@@ -14,6 +14,7 @@ const initialState = {
   ELIMINARRESER:null,
   LISTADOPAQUETES:null,
   PAQUETES:null,
+  USUARIOSALL:null,
 };
 
 const reducer = (state = initialState, { type, payload }) => {
@@ -30,7 +31,8 @@ const reducer = (state = initialState, { type, payload }) => {
         CREATEUSER:false,
         LISTADORESERVAS:null,
         ELIMINARRESER:null,
-        ACTUALIZARPAQUETE:null
+        ACTUALIZARPAQUETE:null,
+        USUARIOSALL:null
       }
 
 
@@ -79,6 +81,13 @@ const reducer = (state = initialState, { type, payload }) => {
         USER:true
       }
       //!Vamos con las reservas 
+
+      case LISTADOPAQUETESALL:
+        return{
+          ...state,
+          PAQUETES:payload
+
+        }
         case RESERVARHOTEL:
           return{
             ...state,
@@ -124,6 +133,12 @@ const reducer = (state = initialState, { type, payload }) => {
             ...state,
             ACTUALIZARPAQUETE:payload
           
+          }
+
+          case LISTAUSUARIOSALL: 
+            return {
+            ...state,
+            USUARIOSALL:payload
           }
     default:
       return { ...state };

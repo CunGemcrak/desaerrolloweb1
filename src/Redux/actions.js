@@ -2,7 +2,7 @@
 
 import { CREARUSUARIO, LOGIN, RESERVARHOTEL, CERRARSESION, 
   ACTUALIZARUSUARIO, LISTADERESERVAS, ITEMAPROBADO, ELIMINARRESERVA,
-  ADMINCREARPAQUETE, ADMINLISTAPAQUETES, ELIMINARPAQUETE, ADMINACTUALIZARPAQUETE} from "./action-types";
+  ADMINCREARPAQUETE, ADMINLISTAPAQUETES, ELIMINARPAQUETE, ADMINACTUALIZARPAQUETE, LISTADOPAQUETESALL, LISTAUSUARIOSALL} from "./action-types";
 import axios from "axios";
 
 import alertify from "alertifyjs";
@@ -187,7 +187,31 @@ export const reservaHotel = (formData, Usuario) => {
 };
 
 //! MAnejo de reservas
+export const listadopaquetesAll = ()=>{  //!todos los paquetes
+  return  async (dispatch) => {
+    try {
+      // Definimos el endpoint con el parámetro de consulta
+      const endpoint = `http://localhost:3001/verpaquetes`;
 
+      // Realizamos la solicitud GET
+      const response = await axios.get(endpoint);
+
+      // Validamos si la respuesta contiene datos válidos
+      if (response.status === 200 && response.data) {
+        dispatch({
+          type: LISTADOPAQUETESALL,
+          payload: response.data, // Pasamos los datos al payload
+        });
+      } else {
+        console.warn('Respuesta inesperada del servidor:', response);
+      }
+    } catch (error) {
+      // Manejamos errores de la solicitud
+      console.error('Error al obtener la lista de reservas:', error.response?.data || error.message);
+  //    alert('No se pudo obtener la lista de reservas. Por favor, intenta nuevamente.');
+    }
+  };
+}
 
 export const listaReservas = (idusuario) => {
   return async (dispatch) => {
@@ -394,6 +418,152 @@ export const eliminar_paquete = (idpaquete) => {
               alertify.error('No se pudo eliminar el paquete');
           }
       
+  };
+};
+export const lista_usuariosall = () => {
+  return async (dispatch) => {
+    try {
+      const endpoint = 'http://localhost:3001/listausuarioall'; // Corrige el endpoint, quitando el símbolo `}` sobrante.
+      const responseAlllist = await axios.get(endpoint);
+
+      if (responseAlllist.status === 200) {
+        dispatch({
+          type: LISTAUSUARIOSALL,
+          payload: responseAlllist.data, // Asegúrate de que `responseAlllist.data` tenga el formato esperado.
+        });
+        alertify.success('Usuarios listados correctamente'); // Mensaje más apropiado.
+      } else {
+        console.warn('La respuesta del servidor no es la esperada:', responseAlllist);
+        alertify.error('No se pudieron listar los usuarios');
+      }
+    } catch (error) {
+      console.error('Error al listar los usuarios:', error);
+      alertify.error('Error al conectar con el servidor');
+    }
+  };
+};
+export const bloquear_usuario_admin = (id) => {
+  return async (dispatch) => {
+    try {
+      const endpointActualizar = `http://localhost:3001/estadousuariobloquear/${id}`;
+      const response = await axios.put(endpointActualizar);
+
+      if (response.status === 200) {
+        // Verifica si la respuesta tiene un status '200' y 'data' es un array
+        if (response.data.status === '200' && Array.isArray(response.data.data)) {
+          // Despachar la acción con los usuarios actualizados
+          dispatch({
+            type: 'LISTAUSUARIOSALL',
+            payload: response.data.data, // Solo los datos de los usuarios
+          });
+          alertify.success('Usuario bloqueado correctamente');
+        } else {
+          console.warn('La respuesta no contiene la estructura esperada', response.data);
+          alertify.error('No se pudo bloquear el usuario');
+        }
+      } else {
+        console.warn('La respuesta del servidor no es la esperada:', response);
+        alertify.error('No se pudo actualizar el paquete');
+      }
+    } catch (error) {
+      console.error('Error al actualizar el paquete:', error.response?.data || error.message);
+      alertify.error('Error al bloquear el usuario');
+    }
+  };
+};
+
+export const activar_usuario_admin = (id) => {
+  return async (dispatch) => {
+    try {
+      const endpointActualizar = `http://localhost:3001/estadousuarioactivar/${id}`;
+      const response = await axios.put(endpointActualizar);
+
+      if (response.status === 200) {
+        // Verifica si la respuesta tiene un status '200' y 'data' es un array
+        if (response.data.status === '200' && Array.isArray(response.data.data)) {
+          // Despachar la acción con los usuarios actualizados
+          dispatch({
+            type: 'LISTAUSUARIOSALL',
+            payload: response.data.data, // Solo los datos de los usuarios
+          });
+          alertify.success('Usuario bloqueado correctamente');
+        } else {
+          console.warn('La respuesta no contiene la estructura esperada', response.data);
+          alertify.error('No se pudo bloquear el usuario');
+        }
+      } else {
+        console.warn('La respuesta del servidor no es la esperada:', response);
+        alertify.error('No se pudo actualizar el paquete');
+      }
+    } catch (error) {
+      console.error('Error al actualizar el paquete:', error.response?.data || error.message);
+      alertify.error('Error al bloquear el usuario');
+    }
+  };
+};
+
+
+export const listado_de_reservas_all = () => {
+  return async (dispatch) => {
+    try {
+      const endpoint = 'http://localhost:3001/listareservasall'; // Corrige el endpoint, quitando el símbolo `}` sobrante.
+      const responseAlllist = await axios.get(endpoint);
+
+      if (responseAlllist.status === 200) {
+        dispatch({
+          type: LISTADERESERVAS,
+          payload: responseAlllist.data, // Asegúrate de que `responseAlllist.data` tenga el formato esperado.
+        });
+        alertify.success('Usuarios listados correctamente'); // Mensaje más apropiado.
+      } else {
+        console.warn('La respuesta del servidor no es la esperada:', responseAlllist);
+        alertify.error('No se pudieron listar los usuarios');
+      }
+    } catch (error) {
+      console.error('Error al listar los usuarios:', error);
+      alertify.error('Error al conectar con el servidor');
+    }
+  };
+};
+
+export const aprobar_reserva_admin = (cont, Aprobado) => {
+  return async (dispatch) => {
+    try {
+      const endpointActualizar = `http://localhost:3001/estadousuarioactivar/${cont}/${Aprobado}`;
+      const responseReserva = await axios.put(endpointActualizar);
+
+      if (responseReserva.status === 200) {
+        dispatch({
+          type: LISTADERESERVAS,
+          payload: responseReserva.data, // Asegúrate de que `responseAlllist.data` tenga el formato esperado.
+        });
+        try {
+          const endpoint = 'http://localhost:3001/listareservasall'; // Corrige el endpoint, quitando el símbolo `}` sobrante.
+          const responseAlllist = await axios.get(endpoint);
+    
+          if (responseAlllist.status === 200) {
+            dispatch({
+              type: LISTADERESERVAS,
+              payload: responseAlllist.data, // Asegúrate de que `responseAlllist.data` tenga el formato esperado.
+            });
+            alertify.success('Usuarios listados correctamente'); // Mensaje más apropiado.
+          } else {
+            console.warn('La respuesta del servidor no es la esperada:', responseAlllist);
+            alertify.error('No se pudieron listar los usuarios');
+          }
+        } catch (error) {
+          console.error('Error al listar los usuarios:', error);
+          alertify.error('Error al conectar con el servidor');
+        }
+        alertify.success('Usuarios listados correctamente'); // Mensaje más apropiado.
+      } else {
+        console.warn('La respuesta del servidor no es la esperada:', responseReserva);
+        alertify.error('No se pudieron listar los usuarios');
+      }
+    } catch (error) {
+      console.error('Error al listar los usuarios:', error);
+      alertify.error('Error al conectar con el servidor');
+    }
   };
 };
 

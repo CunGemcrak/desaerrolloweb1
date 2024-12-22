@@ -1,0 +1,44 @@
+/* Estilos para el listado de usuarios */
+.usuarios-lista {
+    margin: 20px;
+  }
+  
+  .usuario-card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+  }
+  
+  .usuario-card .card-body {
+    padding: 16px;
+  }
+  
+  .usuario-card .card-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: orange;
+  }
+  
+  .text-center {
+    text-align: center;
+  }
+  
+  .text-center .btn {
+    margin: 5px;
+  }
+  
+  .mb-4 {
+    margin-bottom: 1.5rem !important;
+  }
+  .ancho{
+    width: 300px;
+    margin: 5px;
+  }
+  .usuario-card img {
+    width: 80%; /* Establece un ancho más pequeño */
+    height: 100%; /* Ajusta la altura para mantener la proporción */
+    object-fit: cover; /* Asegura que la imagen se recorte para llenar el contenedor */
+    border-radius: 8px; /* Bordes redondeados */
+    display: block; /* Elimina el espacio extra debajo de la imagen */
+    margin: 0 auto; /* Centra la imagen en su contenedor */
+    border-radius: 100%;
+  }
