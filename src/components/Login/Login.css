@@ -15,7 +15,7 @@ img {
 }
 
 /* Botones de Mario */
-.btn-mario {
+.btn-mario-login {
   background: linear-gradient(90deg, #f5a623, #f04d24);
   color: white;
   font-weight: bold;
@@ -23,9 +23,10 @@ img {
   border-radius: 5px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
   transition: all 0.3s ease;
+  width: 200px;
 }
 
-.btn-mario:hover {
+.btn-mario-login:hover {
   background: linear-gradient(90deg, #f04d24, #f5a623);
   transform: translateY(-3px);
   box-shadow: 0 8px 12px rgba(0, 0, 0, 0.3);

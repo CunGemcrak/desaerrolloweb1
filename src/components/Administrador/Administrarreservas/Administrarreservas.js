@@ -58,16 +58,16 @@ const AdAdministrarreservasusuarios = () => {
   // Función para aceptar una reserva
   const handleAccept = async (cont, estado) => {
     try {
-      alertify.success('Reserva aceptada correctamente.');
+     // alertify.success('Reserva aceptada correctamente.');
       if(estado === 'Pendiente'){
      
         dispatch(aprobar_reserva_admin(cont, 'Aprobado'))
-        alertify.success("REserva Aprobada")
+       // alertify.success("Reserva Aprobada")
       }else
       if(estado === 'Aprobado'){
-        alert("Aprobado")
+       // alert("Aprobado")
         dispatch(aprobar_reserva_admin(cont, 'Pendiente'))
-        alertify.success("Reserva No Aprobada")
+     //   alertify.success("Reserva No Aprobada")
       }
     } catch (error) {
       console.error('Error al aceptar la reserva:', error);

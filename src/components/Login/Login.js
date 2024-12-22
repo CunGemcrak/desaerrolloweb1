@@ -54,10 +54,27 @@ const Login = () => {
 
   // Validación de contraseña
   const validatePassword = (password) => {
-    if (password.length < 6) { // Validación básica para longitud mínima de la contraseña
+    // Validación de longitud mínima
+    if (password.length < 6) {
       setErrors((prev) => ({ ...prev, password: 'La contraseña debe tener al menos 6 caracteres.' }));
       return false;
     }
+  
+    // Validación de mayúsculas, minúsculas, números y caracteres especiales
+    const hasUpperCase = /[A-Z]/.test(password); // Verifica mayúsculas
+    const hasLowerCase = /[a-z]/.test(password); // Verifica minúsculas
+    const hasNumber = /\d/.test(password); // Verifica números
+    const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(password); // Verifica caracteres especiales
+  
+    if (!hasUpperCase || !hasLowerCase || !hasNumber || !hasSpecialChar) {
+      setErrors((prev) => ({
+        ...prev,
+        password: 'La contraseña debe contener al menos una mayúscula, una minúscula, un número y un carácter especial.',
+      }));
+      return false;
+    }
+  
+    // Si pasa todas las validaciones
     setErrors((prev) => ({ ...prev, password: '' }));
     return true;
   };
@@ -93,14 +110,10 @@ const Login = () => {
       dispatch(cerrarSesion())
     }
   },[dispatch, CREATEUSER])
-  // Función para iniciar sesión
+  
   const handleSubmit = () => {
     if (isFormValid) {
-      // Aquí agregarías la lógica para iniciar sesión, por ejemplo, llamando a una API o acción de Redux
-      //alert('¡Inicio de sesión exitoso!');
-      //alertify.success('¡Bienvenido al Hotel Champiñón!');
-      // Dispatch de login si usas Redux
-      // dispatch(login_user(formData));
+      
 
       dispatch(logueoUser(formData))
            
@@ -159,7 +172,7 @@ const Login = () => {
 
                 <div className="text-center pt-1 mb-5 pb-1">
                   <Button
-                    className="mb-4 w-100 btn-mario"
+                    className="mb-4  btn-mario-login w-70"
                     onClick={handleSubmit}
                     disabled={!isFormValid}
                   >

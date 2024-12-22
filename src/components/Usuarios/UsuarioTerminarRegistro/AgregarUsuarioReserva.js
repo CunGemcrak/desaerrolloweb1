@@ -39,7 +39,7 @@ const AgregarUsuarioReserva = () => {
     try {
 
       await dispatch(listaReservas(LOGINUSER.idusuario));
-      await alert(JSON.stringify(LISTADORESERVAS))
+     // await alert(JSON.stringify(LISTADORESERVAS))
     } catch (error) {
       console.error('Error al actualizar la lista de reservas:', error);
       alertify.error('Error al actualizar la lista de reservas');

@@ -190,8 +190,7 @@ const Registrate = () => {
   // alert("Error fatal")
     if (isFormValid) {
      
-      alert('¡Usuario registrado correctamente!')
-      alertify.success('¡Usuario registrado correctamente!');
+     
       dispach(register_user(formData))
 
 
@@ -401,7 +400,7 @@ const Registrate = () => {
                 <div className="text-center pt-1 mb-5 pb-1">
                   {/* Botón de registro */}
                   <Button
-                    className="mb-4 w-100 btn-mario"
+                    className="mb-4 w-70 btn-mario-login"
                     onClick={handleSubmit}
                     disabled={!isFormValid}  // Botón deshabilitado si el formulario no es válido
                   >

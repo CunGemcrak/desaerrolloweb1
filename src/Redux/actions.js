@@ -44,7 +44,7 @@ export const register_user = (formData) => {
        if (cadena.includes("Error al guardar los datos")) {
         alertify.alert(
           "Error", // Título de la ventana
-          "Se encontró error", // Mensaje
+          "Usuario ya registrado intenta con otro correo, identificacion y celular", // Mensaje
           function() { // Acción al presionar "Aceptar"
               alertify.error("Operación cancelada"); // Acción después de aceptar
           }
@@ -83,10 +83,10 @@ export const UserActualizar = (formData) => {
   return async (dispatch) => {
     try {
       const endpoint = `http://localhost:3001/actualizar/${formData.cont}`;
-alert("Ejemplo"+JSON.stringify(formData))
+//alert("Ejemplo"+JSON.stringify(formData))
       // Realiza la solicitud PUT
       const response = await axios.put(endpoint, formData); 
-        alert(JSON.stringify(response.data))
+      //  alert(JSON.stringify(response.data))
       if (response.status === 200) {
         dispatch({
           type: ACTUALIZARUSUARIO,
@@ -98,12 +98,10 @@ alert("Ejemplo"+JSON.stringify(formData))
       }
     } catch (error) {
       console.error('Error en la actualización:', error);
-      alert('Hubo un problema al actualizar el usuario.', error);
+    //  alert('Hubo un problema al actualizar el usuario.', error);
     }
   };
 };
-
-
 
 
 
@@ -124,31 +122,50 @@ export const logueoUser = (formData) => {
         passwords: formData.password, // Cambiar clave para coincidir con PHP
       };
 
-      //const endpoint = "http://localhost:3001/leer";
       const endpoint = `http://localhost:3001/leer?email=${encodeURIComponent(userData.email)}&passwords=${encodeURIComponent(userData.passwords)}`;
 
-      const response = await axios.get(endpoint,  userData ); // Cambiar a POST para enviar JSON
-      
-    alert("Esto tengo"+ JSON.stringify( response.data))
-      // Verificar y corregir la URL de la imagen si está presente
-   /*   if (response.data && response.data.imagen) {
-        // Remover las barras invertidas de la URL de la imagen
-        response.data.imagen = response.data.imagen.replace(/\\/g, ''); // Elimina todas las barras invertidas
+      const response = await axios.get(endpoint);
+
+      // Verificar si la respuesta tiene los datos esperados
+      if (!response.data || !response.data.role_id) {
+        alertify
+          .alert("Error", "Usuario no registrado", function () {
+            alertify.message('OK');
+          });
+        return false;
       }
-     */
-     
+
+      const { role_id, nombre } = response.data;
+
+      if (role_id === '1') {
+        alertify
+          .alert("Bienvenid@", `Hola, ${nombre}, Qué gusto verte`, function () {
+            alertify.message('OK');
+          });
+      } else if (role_id === '2') {
+        alertify
+          .alert("Bienvenid@", `Hola ${nombre}, Qué gusto verte`, function () {
+            alertify.message('OK');
+          });
+      } else if (role_id === '0') {
+        alertify
+          .alert("Error", `Hola ${nombre}, Comunícate pronto con el administrador`, function () {
+            alertify.message('OK');
+          });
+        return false;
+      }
 
       dispatch({
         type: LOGIN,
         payload: response.data,
       });
 
-     
-
-
-
     } catch (error) {
       console.log("Error al enviar la información", error.message);
+      alertify
+        .alert("Error", "Hubo un problema al intentar iniciar sesión. Revisa usuario y contraseña.", function () {
+          alertify.message('OK');
+        });
     }
   };
 };
@@ -374,7 +391,7 @@ export const actualizar_paquete = (iditem, data) => {
 
       if (response.status === 200) {
         dispatch({
-          type: 'ADMINACTUALIZARPAQUETE', // Asegúrate de que este tipo de acción esté definido
+          type: ADMINACTUALIZARPAQUETE, // Asegúrate de que este tipo de acción esté definido
           payload: response.data,
         });
         alertify.success('Paquete actualizado correctamente');
@@ -546,7 +563,7 @@ export const aprobar_reserva_admin = (cont, Aprobado) => {
               type: LISTADERESERVAS,
               payload: responseAlllist.data, // Asegúrate de que `responseAlllist.data` tenga el formato esperado.
             });
-            alertify.success('Usuarios listados correctamente'); // Mensaje más apropiado.
+            alertify.success('Actualizacion desarrollada'); // Mensaje más apropiado.
           } else {
             console.warn('La respuesta del servidor no es la esperada:', responseAlllist);
             alertify.error('No se pudieron listar los usuarios');
@@ -555,7 +572,7 @@ export const aprobar_reserva_admin = (cont, Aprobado) => {
           console.error('Error al listar los usuarios:', error);
           alertify.error('Error al conectar con el servidor');
         }
-        alertify.success('Usuarios listados correctamente'); // Mensaje más apropiado.
+       // alertify.success('Usuarios listados correctamente'); // Mensaje más apropiado.
       } else {
         console.warn('La respuesta del servidor no es la esperada:', responseReserva);
         alertify.error('No se pudieron listar los usuarios');
