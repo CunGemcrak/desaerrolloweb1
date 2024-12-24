@@ -77,3 +77,18 @@ URL_SERVIDORWEB="http://localhost/desarrolloweb/index.php"
   Repositorio: 
   <a href="https://github.com/CunGemcrak/phppackdesarrolloweb.git" target="_blank">PHP Pack</a>
 </p>
+
+<hr />
+
+<h2>👤 <strong>Creador</strong></h2>
+<ul>
+  <li><strong>Nombre:</strong> Luis Alberto Buelvas Cogollo</li>
+  <li><strong>Asignatura:</strong> Desarrollo Web</li>
+  <li><strong>Ficha:</strong> 56603</li>
+  <li><strong>Bloque:</strong> Primer Bloque</li>
+  <li><strong>Corte:</strong> 24V06</li>
+</ul>
+
+<hr />
+
+<img src="https://res.cloudinary.com/dss2hdisa/image/upload/hero-m-l_helypc.png" alt="Hotel Temático" style="max-width: 100%; height: auto;">

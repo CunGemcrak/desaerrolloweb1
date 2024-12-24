@@ -92,7 +92,7 @@ const MyNavbar = () => {
               
               {menuelement === 2 ? <NavLink to="/registro" className="navbar-link underline">Reservar</NavLink> :null}
               
-               <NavLink to="/PerfilUsuario" className="navbar-link underline">Perfil</NavLink>
+              {menuelement === 2 ? <NavLink to="/PerfilUsuario" className="navbar-link underline">Perfil</NavLink>: menuelement === 1 ? <NavLink to="/PerfilUsuario" className="navbar-link underline">Perfil</NavLink>:null}
                {menuelement === 0 ? <NavLink to="/registrate" className="navbar-link underline">Login</NavLink> : <NavLink to="/registrate" className="navbar-link underline" onClick={hondleCerrarSesion}>Salir</NavLink> }
           </Nav>
         </Navbar.Collapse>
